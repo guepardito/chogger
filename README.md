@@ -2,10 +2,12 @@
 **Chogger** is a minimal logging system for C. It allows you to log messages with different severity levels to a file.
 
 # 🚀 Features
-- Log levels: DEBUG, INFO, NOTICE, WARN, ERROR, CRIT, ALERT, EMERG
-- Appends logs to a file
-- Automatically closes the log file on exit (isn't required to manage open log files)
-- Minimal, easy-to-use API
+- ✅ **Log levels**: DEBUG, INFO, NOTICE, WARN, ERROR, CRIT, ALERT, EMERG
+- 📋**File logging:** Appends logs to a file automatically
+- 🕒 **Timestamps:** Logs include formatted date and time (`[YYYY-MM-DD HH:MM:SS]`)
+- 🧵 **Thread-safe:** Cross-platform mutex support (POSIX and Windows)
+- 🧹 **Automatic cleanup:** Automatically closes the log file on exit
+- 📦 **Minimal API:** Easy to integrate in any C project
 
 # ✅ usage
 1. **Place the `.a` library and `.h` header file in your project:**
@@ -38,5 +40,8 @@
     Make sure to link the static library while compiling your code using the following :
 
     ```c
-    gcc main.c -L. -lchogger -o main
+    gcc example.c -L. -lchogger -o main
     ```
+
+# 🛠️ Build
+To compile `libchogger.a` from source, use the build scripts. This will generate the static library libchogger.a, which you can then link to your projects.
