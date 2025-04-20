@@ -59,10 +59,10 @@ void chog_log(CHOG_LEVEL level, char*  msg);
 /// @return String representation of the level, or "UNKNOWN" if invalid
 const char* chog_level_parser(CHOG_LEVEL level);
 
-//@brief Returns the current date and time as a formatted string.
-//@note The format is "[YYYY-MM-DD HH:MM:SS]". This function uses a static buffer and is protected by a mutex to ensure thread safety.
-//@note The returned pointer is valid until the next call from any thread.
-//@return A pointer to a static buffer containing the formatted timestamp.
+/// @brief Returns the current date and time as a formatted string.
+/// @note The format is "[YYYY-MM-DD HH:MM:SS]". This function uses a static buffer and is protected by a mutex to ensure thread safety.
+/// @note The returned pointer is valid until the next call from any thread.
+/// @return A pointer to a static buffer containing the formatted timestamp.
 const char* chog_get_timestamp();
 
 #endif
