@@ -9,14 +9,14 @@
 // Enum that represents different log severity levels
 typedef enum 
 {
-    DEBUG,   // Detailed debugging information
-    INFO,    // General information messages
-    NOTICE,  // Normal but significant conditions
-    WARN,    // Warning conditions
-    ERROR,   // Error conditions
-    CRIT,    // Critical conditions
-    ALERT,   // Action must be taken immediately
-    EMERG    // System is unusable
+    CHOG_DEBUG,   // Detailed debugging information
+    CHOG_INFO,    // General information messages
+    CHOG_NOTICE,  // Normal but significant conditions
+    CHOG_WARN,    // Warning conditions
+    CHOG_ERROR,   // Error conditions
+    CHOG_CRIT,    // Critical conditions
+    CHOG_ALERT,   // Action must be taken immediately
+    CHOG_EMERG    // System is unusable
 } CHOG_LEVEL;
 
 typedef struct 

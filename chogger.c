@@ -30,15 +30,14 @@ void chog_close_logger()
 const char *chog_level_parser(CHOG_LEVEL level)
 {
     switch (level) {
-        case DEBUG:  return "DEBUG";
-        case INFO:   return "INFO";
-        case NOTICE: return "NOTICE";
-        case WARN:   return "WARN";
-        case ERROR:  return "ERROR";
-        case CRIT:   return "CRITICAL";
-        case ALERT:  return "ALERT";
-        case EMERG:  return "EMERGENCY";
-        default:     return "UNKNOWN";
+        case CHOG_DEBUG:  return "DEBUG";
+        case CHOG_INFO:   return "INFO";
+        case CHOG_NOTICE: return "NOTICE";
+        case CHOG_WARN:   return "WARN";
+        case CHOG_ERROR:  return "ERROR";
+        case CHOG_CRIT:   return "CRITICAL";
+        case CHOG_ALERT:  return "ALERT";
+        case CHOG_EMERG:  return "EMERGENCY";
     }
 }
 
