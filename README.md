@@ -30,18 +30,29 @@
     Inside your `main` function or wherever you want to use the logger, initialize it and log messages as follows:
 
     ```c
-    CHOG_LOGGER logger = chog_init(".log");
+    chog_init(".log");
 
     chog_log(INFO, "Application started successfully");
     ```
 
 4. **Link the library:**
 
-    Make sure to link the static library while compiling your code using the following :
+    Make sure to link the static library while compiling your code using the following:
 
+    On linux:
     ```c
     gcc example.c -L. -lchogger -o main
     ```
 
+    On windows:
+    ```c
+    gcc example.c ./libchogger.lib -o main.exe
+    ```
+
 # 🛠️ Build
-To compile `libchogger.a` from source, use the build scripts. This will generate the static library libchogger.a, which you can then link to your projects.
+To compile `chogger` from source, use the provided build scripts.
+
+- On **Linux**, this will generate `libchogger.a` (static library).
+- On **Windows**, this will generate `chogger.lib` (MSVC-compatible static library).
+
+You can then link these files to your projects.
