@@ -6,4 +6,4 @@ if (-Not (Test-Path -Path "./build")) {
 gcc -Wall -Wextra -c chogger.c -o ./build/chogger.o
 
 # Create the static library
-ar rcs ./build/libchogger.a ./build/chogger.o
+ar rcs ./build/libchogger.lib ./build/chogger.o
