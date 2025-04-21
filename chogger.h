@@ -35,16 +35,12 @@ typedef enum
     CHOG_EMERG    // System is unusable
 } CHOG_LEVEL;
 
-typedef struct 
-{
-    int initialized;
-    FILE* output;
-} CHOG_LOGGER;
+
 
 /// @brief Initializes the logger with the given file name (append mode)
 /// @param file_name Path to the log file
 /// @return A CHOG_LOGGER struct with state info. If file can't be opened, logger will not be initialized
-CHOG_LOGGER chog_init(const char* file_name);
+void chog_init(const char* file_name);
 
 /// @brief Closes the log file if the logger was initialized
 void chog_close_logger();
@@ -53,16 +49,5 @@ void chog_close_logger();
 /// @param level Log level (DEBUG, INFO, etc)
 /// @param msg The message to be logged
 void chog_log(CHOG_LEVEL level, char*  msg);
-
-/// @brief Converts a CHOG_LEVEL enum to a string
-/// @param level Log level (DEBUG, INFO, etc)
-/// @return String representation of the level, or "UNKNOWN" if invalid
-const char* chog_level_parser(CHOG_LEVEL level);
-
-/// @brief Returns the current date and time as a formatted string.
-/// @note The format is "[YYYY-MM-DD HH:MM:SS]". This function uses a static buffer and is protected by a mutex to ensure thread safety.
-/// @note The returned pointer is valid until the next call from any thread.
-/// @return A pointer to a static buffer containing the formatted timestamp.
-const char* chog_get_timestamp();
 
 #endif

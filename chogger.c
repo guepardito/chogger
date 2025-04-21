@@ -1,47 +1,15 @@
 #include "chogger.h"
 
+typedef struct 
+{
+    int initialized;
+    FILE* output;
+} CHOG_LOGGER;
+
 // Global instances used internally
 static CHOG_LOGGER logger;
 static CHOG_MUTEX chog_logger_mutex;
 static CHOG_MUTEX chog_timestamp_mutex;
-
-// Initializes the logger by opening the specified file in append mode.
-// If the file is successfully opened, the logger is marked as initialized
-// The logger will automatially be closed at program exit
-CHOG_LOGGER chog_init(const char* file_name)
-{
-    if (file_name == NULL) 
-    {
-        printf("Log file name is empty, nothing will be logged. :(\n");
-    }
-    logger.output = fopen(file_name, "a");
-
-    if (logger.output != NULL)
-    {
-        logger.initialized = 1;
-        atexit(chog_close_logger);
-        CHOG_MUTEX_INIT(chog_logger_mutex);
-        CHOG_MUTEX_INIT(chog_timestamp_mutex);
-    } else
-    {
-        fprintf(stderr, "Logger not initialized\n");
-    }
-
-    return logger;
-}
-
-// Closes the log file if it was successfully opened and the logger is initialized
-void chog_close_logger()
-{
-    if (!logger.initialized) return;
-
-    fclose(logger.output);
-    logger.output = NULL;
-    logger.initialized = 0;
-
-    CHOG_MUTEX_DESTROY(chog_logger_mutex);
-    CHOG_MUTEX_DESTROY(chog_timestamp_mutex);
-}
 
 // Converts a CHOG_LEVEL value to string
 const char *chog_level_parser(CHOG_LEVEL level)
@@ -69,6 +37,42 @@ const char* chog_get_timestamp() {
     CHOG_MUTEX_UNLOCK(chog_timestamp_mutex);
 
     return buffer;
+}
+
+// Initializes the logger by opening the specified file in append mode.
+// If the file is successfully opened, the logger is marked as initialized
+// The logger will automatially be closed at program exit
+void chog_init(const char* file_name)
+{
+    if (file_name == NULL) 
+    {
+        printf("Log file name is empty, nothing will be logged. :(\n");
+    }
+    logger.output = fopen(file_name, "a");
+
+    if (logger.output != NULL)
+    {
+        logger.initialized = 1;
+        atexit(chog_close_logger);
+        CHOG_MUTEX_INIT(chog_logger_mutex);
+        CHOG_MUTEX_INIT(chog_timestamp_mutex);
+    } else
+    {
+        fprintf(stderr, "Logger not initialized\n");
+    }
+}
+
+// Closes the log file if it was successfully opened and the logger is initialized
+void chog_close_logger()
+{
+    if (!logger.initialized) return;
+
+    fclose(logger.output);
+    logger.output = NULL;
+    logger.initialized = 0;
+
+    CHOG_MUTEX_DESTROY(chog_logger_mutex);
+    CHOG_MUTEX_DESTROY(chog_timestamp_mutex);
 }
 
 // Logs a message with the format: [LEVEL] Message
